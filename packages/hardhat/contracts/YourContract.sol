@@ -9,7 +9,7 @@ pragma solidity ^0.8.13;
  * I propose for a rename to Non-Transferable Tokens NTT's
  */
 
-contract SBT {
+contract YourContract {
 
     struct Soul {
         string identity;
