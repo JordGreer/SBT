@@ -62,8 +62,6 @@ export default function ExampleUI({
           <Button
             style={{ marginTop: 8 }}
             onClick={async () => {
-              /* look how you call setPurpose on your contract: */
-              /* notice how you pass a call back for tx updates too */
               const result = tx(writeContracts.YourContract.setPurpose(newPurpose), update => {
                 console.log("📡 Transaction Update:", update);
                 if (update && (update.status === "confirmed" || update.status === 1)) {
@@ -90,13 +88,7 @@ export default function ExampleUI({
         Your Address:
         <Address address={address} ensProvider={mainnetProvider} fontSize={16} />
         <Divider />
-        ENS Address Example:
-        <Address
-          address="0x34aA3F359A9D614239015126635CE7732c18fDF3" /* this will show as austingriffith.eth */
-          ensProvider={mainnetProvider}
-          fontSize={16}
-        />
-        <Divider />
+        
         {/* use utils.formatEther to display a BigNumber: */}
         <h2>Your Balance: {yourLocalBalance ? utils.formatEther(yourLocalBalance) : "..."}</h2>
         <div>OR</div>
