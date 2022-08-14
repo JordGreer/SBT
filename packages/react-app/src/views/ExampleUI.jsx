@@ -71,7 +71,7 @@ export default function ExampleUI({
       </div>
 
       {/*
-        📑 Maybe display a list of events?
+        📑 Maybe display a list of events? change
           (uncomment the event and emit line in YourContract.sol! )
       */}
       <Events
