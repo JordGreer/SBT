@@ -22,6 +22,7 @@ export default function ExampleUI({
   const [mintScore, setMintScore] = useState("loading...");
   const [mintUrl, setMintUrl] = useState("loading...");
   const [mintTimestamp, setMintTimestamp] = useState("loading...");
+  const soulData = [mintIdentity,mintScore,mintUrl,mintTimestamp];
   return (
     <div>
       {/*
@@ -92,25 +93,9 @@ export default function ExampleUI({
             Test
           </Button>
           <Button
-            style={{ marginTop: 8 }}
+            style={{marginTop: 8}}
             onClick={async () => {
-              const result = tx(writeContracts.YourContract.mint(mintAddress), update => {
-                console.log("📡 Transaction Update:", update);
-                if (update && (update.status === "confirmed" || update.status === 1)) {
-                  console.log(" 🍾 Transaction " + update.hash + " finished!");
-                  console.log(
-                    " ⛽️ " +
-                      update.gasUsed +
-                      "/" +
-                      (update.gasLimit || update.gas) +
-                      " @ " +
-                      parseFloat(update.gasPrice) / 1000000000 +
-                      " gwei",
-                  );
-                }
-              });
-              console.log("awaiting metamask/web3 confirm result...", result);
-              console.log(await result);
+              tx(writeContracts.YourContract.mint(mintAddress,soulData));
             }}
           >
             Mint a Soul!
