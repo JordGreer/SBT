@@ -17,6 +17,7 @@ export default function ExampleUI({
   writeContracts,
 }) {
   const [newPurpose, setNewPurpose] = useState("loading...");
+  const [mintAddress, setMintAddress] = useState("loading...");
   return (
     <div>
       {/*
@@ -29,6 +30,12 @@ export default function ExampleUI({
           <Input
             onChange={e => {
               setNewPurpose(e.target.value);
+            }}
+          />
+          <Input
+            placeholder="Mint Address"
+            onChange={e => {
+              setMintAddress(e.target.value);
             }}
           />
           <Button
