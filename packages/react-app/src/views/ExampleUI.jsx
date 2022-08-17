@@ -16,7 +16,6 @@ export default function ExampleUI({
   readContracts,
   writeContracts,
 }) {
-  const [newPurpose, setNewPurpose] = useState("loading...");
   const [mintAddress, setMintAddress] = useState("loading...");
   const [mintIdentity, setMintIdentity] = useState("loading...");
   const [mintScore, setMintScore] = useState("loading...");
@@ -32,12 +31,6 @@ export default function ExampleUI({
         <h2>Soul Mint UI</h2>
         <Divider />
         <div style={{ margin: 1 }}>
-          <Input
-            placeholder="placeholder for text button"
-            onChange={e => {
-              setNewPurpose(e.target.value);
-            }}
-          />
           <Input
             placeholder="Mint Address"
             onChange={e => {
@@ -69,9 +62,9 @@ export default function ExampleUI({
             }}
           />
           <Button
-            style={{ marginTop: 8 }}
+            style={{marginTop: 8}}
             onClick={async () => {
-              const result = tx(writeContracts.YourContract.setPurpose(newPurpose), update => {
+              const result = tx(writeContracts.YourContract.mint(mintAddress,soulData), update => {
                 console.log("📡 Transaction Update:", update);
                 if (update && (update.status === "confirmed" || update.status === 1)) {
                   console.log(" 🍾 Transaction " + update.hash + " finished!");
@@ -88,14 +81,6 @@ export default function ExampleUI({
               });
               console.log("awaiting metamask/web3 confirm result...", result);
               console.log(await result);
-            }}
-          >
-            Test
-          </Button>
-          <Button
-            style={{marginTop: 8}}
-            onClick={async () => {
-              tx(writeContracts.YourContract.mint(mintAddress,soulData));
             }}
           >
             Mint a Soul!
