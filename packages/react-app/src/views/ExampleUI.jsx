@@ -18,6 +18,10 @@ export default function ExampleUI({
 }) {
   const [newPurpose, setNewPurpose] = useState("loading...");
   const [mintAddress, setMintAddress] = useState("loading...");
+  const [mintIdentity, setMintIdentity] = useState("loading...");
+  const [mintScore, setMintScore] = useState("loading...");
+  const [mintUrl, setMintUrl] = useState("loading...");
+  const [mintTimestamp, setMintTimestamp] = useState("loading...");
   return (
     <div>
       {/*
@@ -28,6 +32,7 @@ export default function ExampleUI({
         <Divider />
         <div style={{ margin: 1 }}>
           <Input
+            placeholder="placeholder for text button"
             onChange={e => {
               setNewPurpose(e.target.value);
             }}
@@ -38,10 +43,58 @@ export default function ExampleUI({
               setMintAddress(e.target.value);
             }}
           />
+          <Input
+            placeholder="Identity"
+            onChange={e => {
+              setMintIdentity(e.target.value);
+            }}
+          />
+          <Input
+            placeholder="Score"
+            onChange={e => {
+              setMintScore(e.target.value);
+            }}
+          />
+          <Input
+            placeholder="Url"
+            onChange={e => {
+              setMintUrl(e.target.value);
+            }}
+          />
+          <Input
+            placeholder="Timestamp"
+            onChange={e => {
+              setMintTimestamp(e.target.value);
+            }}
+          />
           <Button
             style={{ marginTop: 8 }}
             onClick={async () => {
               const result = tx(writeContracts.YourContract.setPurpose(newPurpose), update => {
+                console.log("📡 Transaction Update:", update);
+                if (update && (update.status === "confirmed" || update.status === 1)) {
+                  console.log(" 🍾 Transaction " + update.hash + " finished!");
+                  console.log(
+                    " ⛽️ " +
+                      update.gasUsed +
+                      "/" +
+                      (update.gasLimit || update.gas) +
+                      " @ " +
+                      parseFloat(update.gasPrice) / 1000000000 +
+                      " gwei",
+                  );
+                }
+              });
+              console.log("awaiting metamask/web3 confirm result...", result);
+              console.log(await result);
+            }}
+          >
+            Test
+          </Button>
+          <Button
+            style={{ marginTop: 8 }}
+            onClick={async () => {
+              const result = tx(writeContracts.YourContract.mint(mintAddress), update => {
                 console.log("📡 Transaction Update:", update);
                 if (update && (update.status === "confirmed" || update.status === 1)) {
                   console.log(" 🍾 Transaction " + update.hash + " finished!");
