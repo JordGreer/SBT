@@ -103,11 +103,16 @@ export default function ExampleUI({
       {/*
         📑 Maybe display a list of events? change
           (uncomment the event and emit line in YourContract.sol! )
+          event Mint(address _soul);
+          event Burn(address _soul);
+          event Update(address _soul);
+          event SetProfile(address _profiler, address _soul);
+          event RemoveProfile(address _profiler, address _soul);
       */}
       <Events
         contracts={readContracts}
         contractName="YourContract"
-        eventName="SetPurpose"
+        eventName="Mint"
         localProvider={localProvider}
         mainnetProvider={mainnetProvider}
         startBlock={1}
