@@ -109,6 +109,10 @@ export default function ExampleUI({
           event SetProfile(address _profiler, address _soul);
           event RemoveProfile(address _profiler, address _soul);
       */}
+      <Divider />
+      <div style={{ margin: 1 }}> 
+      <h2>Events:</h2>
+      </div>
       <Events
         contracts={readContracts}
         contractName="YourContract"
@@ -117,6 +121,39 @@ export default function ExampleUI({
         mainnetProvider={mainnetProvider}
         startBlock={1}
       />
+      <Events
+        contracts={readContracts}
+        contractName="YourContract"
+        eventName="Burn"
+        localProvider={localProvider}
+        mainnetProvider={mainnetProvider}
+        startBlock={1}
+      />
+      <Events
+        contracts={readContracts}
+        contractName="YourContract"
+        eventName="Update"
+        localProvider={localProvider}
+        mainnetProvider={mainnetProvider}
+        startBlock={1}
+      />
+      <Events
+        contracts={readContracts}
+        contractName="YourContract"
+        eventName="SetProfile"
+        localProvider={localProvider}
+        mainnetProvider={mainnetProvider}
+        startBlock={1}
+      />
+      <Events
+        contracts={readContracts}
+        contractName="YourContract"
+        eventName="RemoveProfile"
+        localProvider={localProvider}
+        mainnetProvider={mainnetProvider}
+        startBlock={1}
+      />
     </div>
+    
   );
 }
