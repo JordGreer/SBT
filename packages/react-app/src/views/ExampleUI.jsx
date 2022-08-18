@@ -110,9 +110,10 @@ export default function ExampleUI({
           event RemoveProfile(address _profiler, address _soul);
       */}
       <Divider />
-      <div style={{ margin: 1 }}> 
+      <div style={{ border: "1px solid #cccccc", padding: 16, width: 400, margin: "auto", marginTop: 64 }}>
+       
       <h2>Events:</h2>
-      </div>
+      
       <Events
         contracts={readContracts}
         contractName="YourContract"
@@ -121,6 +122,7 @@ export default function ExampleUI({
         mainnetProvider={mainnetProvider}
         startBlock={1}
       />
+      
       <Events
         contracts={readContracts}
         contractName="YourContract"
@@ -153,6 +155,7 @@ export default function ExampleUI({
         mainnetProvider={mainnetProvider}
         startBlock={1}
       />
+      </div>
     </div>
     
   );
