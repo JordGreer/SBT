@@ -22,6 +22,7 @@ export default function ExampleUI({
   const [mintUrl, setMintUrl] = useState("loading...");
   const [mintTimestamp, setMintTimestamp] = useState("loading...");
   const soulData = [mintIdentity,mintScore,mintUrl,mintTimestamp];
+  const events = ["Mint","Burn","Update","SetProfile","RemoveProfile"];
   return (
     <div>
       {/*
@@ -112,7 +113,7 @@ export default function ExampleUI({
       <Events
         contracts={readContracts}
         contractName="YourContract"
-        eventName="Mint"
+        eventName={events}
         localProvider={localProvider}
         mainnetProvider={mainnetProvider}
         startBlock={1}
