@@ -25,15 +25,14 @@ export default function Events({ contracts, contractName, eventName, localProvid
 
   return (
     <div style={{ width: 600, margin: "auto", marginTop: 32, paddingBottom: 32 }}>
-      <h2>Events:</h2>
+      <h2>{eventName}</h2>
       <List
         bordered
         dataSource={events}
         renderItem={item => {
           return (
-            <List.Item key={item.blockNumber + "_" + item.args.sender + "_" + item.args.purpose}>
+            <List.Item key={item.blockNumber + "_" + item.args.sender + "_"}>
               <Address address={item.args[0]} ensProvider={mainnetProvider} fontSize={16} />
-              {eventName}
             </List.Item>
           );
         }}
