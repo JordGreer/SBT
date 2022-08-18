@@ -4,6 +4,8 @@ pragma solidity ^0.8.3;
 
 
 /**
+ * Contract design by James Bachini 
+ * https://github.com/jamesbachini/Solidity-SBT-Soul-Bound-Token
  * An experiment in Soul Bound Tokens (SBT's) following Vitalik's
  * co-authored whitepaper at:
  * https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4105763
@@ -40,7 +42,7 @@ contract YourContract {
       name = _name;
       ticker = _ticker;
       //changing this to deployer address for testing, otherwise this should be set as msg.sender
-      operator = 0x5e7c256F90dc15ecc2Ef2faA8Cec57b2a92A436c;
+      operator = msg.sender;
     }
 
     function mint(address _soul, Soul memory _soulData) external {
