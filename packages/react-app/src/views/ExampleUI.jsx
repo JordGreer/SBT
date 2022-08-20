@@ -1,7 +1,8 @@
-import { Button, Card, DatePicker, Divider, Input, Progress, Slider, Spin, Switch } from "antd";
+import { Button, Card, Col, Row, DatePicker, Divider, Input, Progress, Slider, Spin, Switch } from "antd";
 import React, { useState } from "react";
 import { utils } from "ethers";
 import { SyncOutlined } from "@ant-design/icons";
+
 
 import { Address, Balance, Events } from "../components";
 
@@ -24,14 +25,10 @@ export default function ExampleUI({
   const soulData = [mintIdentity,mintScore,mintUrl,mintTimestamp];
   const eventList = ["Mint","Burn","Update","SetProfile","RemoveProfile"];
   return (
-    <div>
-      {/*
-        ⚙️ Here is an example UI that displays and sets the purpose in your smart contract:
-      */}
-      <div style={{ border: "1px solid #cccccc", padding: 16, width: 400, margin: "auto", marginTop: 64 }}>
-        <h2>Soul Mint UI</h2>
-        <Divider />
-        <div style={{ margin: 1 }}>
+    <div> 
+      <Row gutter={16}>
+        <Col span={8}>
+        <Card title="Soul Mint UI" bordered={false}>
           <Input
             placeholder="Mint Address"
             onChange={e => {
@@ -86,7 +83,6 @@ export default function ExampleUI({
           >
             Mint a Soul!
           </Button>
-        </div>
         <Divider />
         Your Address: 
         <Address address={address} ensProvider={mainnetProvider} fontSize={16} />
@@ -97,9 +93,15 @@ export default function ExampleUI({
           ensProvider={mainnetProvider}
           fontSize={16}
         />
-        <div style={{ margin: 1 }}>  
-        </div>
-      </div>
+      </Card>
+        </Col>
+        <Col span={8}>
+          <Card title="Soul Updating" bordered={false}>
+
+          </Card>
+        </Col>
+      </Row>
+      
       <Divider />
       <div style={{ border: "1px solid #cccccc", padding: 16, width: 400, margin: "auto", marginTop: 64 }}>
       <h2>Events:</h2>
@@ -112,6 +114,7 @@ export default function ExampleUI({
         startBlock={1}
       />
       </div>
+      
     </div>
   );
 }
