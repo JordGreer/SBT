@@ -34,7 +34,12 @@ export default function ExampleUI({
     <div> 
       <Row gutter={16}>
         <Col span={8}>
-          <Card title="Soul Mint UI" bordered={false}>
+          <Card 
+          title="Soul Mint UI" 
+          bordered={true} 
+          hoverable style={{
+            width: 500,
+          }}>
             <Input
               placeholder="Mint Address"
               onChange={e => {
@@ -92,7 +97,12 @@ export default function ExampleUI({
           </Card>
         </Col>
         <Col span={8}>
-          <Card title="Soul Updating" bordered={false}>
+          <Card 
+          title="Soul Updating" 
+          bordered={true}
+          hoverable style={{
+            width: 500,
+          }}>
             <Input
               placeholder="Mint Address"
               onChange={e => {
