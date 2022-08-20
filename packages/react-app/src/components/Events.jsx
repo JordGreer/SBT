@@ -33,7 +33,7 @@ export default function Events({ contracts, contractName, eventName, localProvid
           return (
             <List.Item key={item.blockNumber}>
               <Address address={item.args[0]} ensProvider={mainnetProvider} fontSize={16} />
-              {eventName}
+              {item.event}
             </List.Item>
           );
         }}

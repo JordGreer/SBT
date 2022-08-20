@@ -22,6 +22,7 @@ export default function ExampleUI({
   const [mintUrl, setMintUrl] = useState("loading...");
   const [mintTimestamp, setMintTimestamp] = useState("loading...");
   const soulData = [mintIdentity,mintScore,mintUrl,mintTimestamp];
+  const eventList = ["Mint","Burn","Update","SetProfile","RemoveProfile"];
   return (
     <div>
       {/*
@@ -99,64 +100,18 @@ export default function ExampleUI({
         <div style={{ margin: 1 }}>  
         </div>
       </div>
-
-      {/*
-        📑 Maybe display a list of events? change
-          (uncomment the event and emit line in YourContract.sol! )
-          event Mint(address _soul);
-          event Burn(address _soul);
-          event Update(address _soul);
-          event SetProfile(address _profiler, address _soul);
-          event RemoveProfile(address _profiler, address _soul);
-      */}
       <Divider />
       <div style={{ border: "1px solid #cccccc", padding: 16, width: 400, margin: "auto", marginTop: 64 }}>
-       
       <h2>Events:</h2>
-      
       <Events
         contracts={readContracts}
         contractName="YourContract"
-        eventName="Mint"
-        localProvider={localProvider}
-        mainnetProvider={mainnetProvider}
-        startBlock={1}
-      />
-      
-      <Events
-        contracts={readContracts}
-        contractName="YourContract"
-        eventName="Burn"
-        localProvider={localProvider}
-        mainnetProvider={mainnetProvider}
-        startBlock={1}
-      />
-      <Events
-        contracts={readContracts}
-        contractName="YourContract"
-        eventName="Update"
-        localProvider={localProvider}
-        mainnetProvider={mainnetProvider}
-        startBlock={1}
-      />
-      <Events
-        contracts={readContracts}
-        contractName="YourContract"
-        eventName="SetProfile"
-        localProvider={localProvider}
-        mainnetProvider={mainnetProvider}
-        startBlock={1}
-      />
-      <Events
-        contracts={readContracts}
-        contractName="YourContract"
-        eventName="RemoveProfile"
+        eventName={eventList}
         localProvider={localProvider}
         mainnetProvider={mainnetProvider}
         startBlock={1}
       />
       </div>
     </div>
-    
   );
 }
