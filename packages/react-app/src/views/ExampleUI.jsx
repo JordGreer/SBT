@@ -40,10 +40,10 @@ export default function ExampleUI({
       <Row gutter={16}>
         <Col span={8}>
           <Card 
-          title="Operator UI" 
-          bordered={true} 
-          hoverable style={{
-            width: 500,
+            title="Operator UI" 
+            bordered={true} 
+            hoverable style={{
+              width: 500,
           }}>
             <Input
               placeholder="Mint or update Address"
