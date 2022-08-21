@@ -44,6 +44,18 @@ export default function ExampleUI({
         hoverable style={{
           width: 500,
         }}>
+          <Input
+              placeholder="Name of SBT"
+              onChange={e => {
+                setSbtName(e.target.value);
+            }}
+            />
+            <Input
+              placeholder="Ticker"
+              onChange={e => {
+                setSbtTicker(e.target.value);
+              }}
+            />
       <Row gutter={16}>
         <Col span={8}>
           <Card 
