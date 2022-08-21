@@ -37,6 +37,7 @@ export default function ExampleUI({
 
   return (
     <div> 
+      <Space align="center">
       <Row gutter={16}>
         <Col span={8}>
           <Card 
