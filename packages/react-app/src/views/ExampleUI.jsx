@@ -17,63 +17,68 @@ export default function ExampleUI({
   readContracts,
   writeContracts,
 }) {
-  const [mintAddress, setMintAddress] = useState("loading...");
-  const [mintIdentity, setMintIdentity] = useState("loading...");
-  const [mintScore, setMintScore] = useState("loading...");
-  const [mintUrl, setMintUrl] = useState("loading...");
-  const [mintTimestamp, setMintTimestamp] = useState("loading...");
-  const soulData = [mintIdentity,mintScore,mintUrl,mintTimestamp];
+  const [operatorAddress, setOperatorAddress] = useState("loading...");
+  const [operatorIdentity, setOperatorIdentity] = useState("loading...");
+  const [operatorScore, setOperatorScore] = useState("loading...");
+  const [operatorUrl, setOperatorUrl] = useState("loading...");
+  const [operatorTimestamp, setOperatorTimestamp] = useState("loading...");
+  const operatorData = [operatorIdentity,operatorScore,operatorUrl,operatorTimestamp];
   const eventList = ["Mint","Burn","Update","SetProfile","RemoveProfile"];
-  const [updateAddress, setUpdateAddress] = useState("loading...");
-  const [updateIdentity, setUpdateIdentity] = useState("loading...");
-  const [updateScore, setUpdateScore] = useState("loading...");
-  const [updateUrl, setUpdateUrl] = useState("loading...");
-  const [updateTimestamp, setUpdateTimestamp] = useState("loading...");
-  const updateSoulData = [updateIdentity,updateScore,updateUrl,updateTimestamp];
+
+  const [userAddress, setUserAddress] =useState("loading...");
+  const [userprofilerAddress, setUserProfilerAddress] =useState("loading...");
+
+  const [profileAddress, setProfileAddress] =useState("loading...");
+  const [profileIdentity, setProfileIdentity] = useState("loading...");
+  const [profileScore, setProfileScore] = useState("loading...");
+  const [profileUrl, setProfileUrl] = useState("loading...");
+  const [profileTimestamp, setProfileTimestamp] = useState("loading...");
+  const profileData = [profileIdentity,profileScore,profileUrl,profileTimestamp];
+
   return (
     <div> 
       <Row gutter={16}>
         <Col span={8}>
           <Card 
-          title="Soul Mint UI" 
+          title="Operator UI" 
           bordered={true} 
           hoverable style={{
             width: 500,
           }}>
             <Input
-              placeholder="Mint Address"
+              placeholder="Mint or update Address"
               onChange={e => {
-              setMintAddress(e.target.value);
+              setOperatorAddress(e.target.value);
             }}
             />
             <Input
               placeholder="Identity"
               onChange={e => {
-                setMintIdentity(e.target.value);
+                setOperatorIdentity(e.target.value);
               }}
             />
             <Input
               placeholder="Score"
               onChange={e => {
-                setMintScore(e.target.value);
+                setOperatorScore(e.target.value);
               }}
             />
             <Input
               placeholder="Url"
               onChange={e => {
-                setMintUrl(e.target.value);
+                setOperatorUrl(e.target.value);
               }}
             />
             <Input
               placeholder="Timestamp"
               onChange={e => {
-                setMintTimestamp(e.target.value);
+                setOperatorTimestamp(e.target.value);
               }}
             />
             <Button
               style={{marginTop: 8}}
               onClick={async () => {
-                const result = tx(writeContracts.YourContract.mint(mintAddress,soulData), update => {
+                const result = tx(writeContracts.YourContract.mint(operatorAddress,operatorData), update => {
                   console.log("📡 Transaction Update:", update);
                   if (update && (update.status === "confirmed" || update.status === 1)) {
                     console.log(" 🍾 Transaction " + update.hash + " finished!");
@@ -92,51 +97,57 @@ export default function ExampleUI({
                 console.log(await result);
               }}
               >
-              Mint a Soul!
+              Mint a Soul
+            </Button>
+            <Button
+              style={{marginTop: 8}}
+              onClick={async () => {
+                const result = tx(writeContracts.YourContract.update(operatorAddress,operatorData), update => {
+                  console.log("📡 Transaction Update:", update);
+                  if (update && (update.status === "confirmed" || update.status === 1)) {
+                    console.log(" 🍾 Transaction " + update.hash + " finished!");
+                    console.log(
+                      " ⛽️ " +
+                        update.gasUsed +
+                        "/" +
+                        (update.gasLimit || update.gas) +
+                        " @ " +
+                        parseFloat(update.gasPrice) / 1000000000 +
+                        " gwei",
+                    );
+                  }
+                });
+                console.log("awaiting metamask/web3 confirm result...", result);
+                console.log(await result);
+              }}
+              >
+              Update a Soul
             </Button>
           </Card>
         </Col>
         <Col span={8}>
           <Card 
-          title="Soul Updating" 
+          title="User UI" 
           bordered={true}
           hoverable style={{
             width: 500,
           }}>
             <Input
-              placeholder="Mint Address"
+              placeholder="Address of soul to Burn or remove profile"
               onChange={e => {
-                setUpdateAddress(e.target.value);
-              }}
+              setUserAddress(e.target.value);
+            }}
             />
             <Input
-              placeholder="Identity"
+              placeholder="Address of profiler"
               onChange={e => {
-                setUpdateIdentity(e.target.value);
-              }}
-            />
-            <Input
-              placeholder="Score"
-              onChange={e => {
-                setUpdateScore(e.target.value);
-              }}
-            />
-            <Input
-              placeholder="Url"
-              onChange={e => {
-                setUpdateUrl(e.target.value);
-              }}
-            />
-            <Input
-              placeholder="Timestamp"
-              onChange={e => {
-                setUpdateTimestamp(e.target.value);
-              }}
+              setUserProfilerAddress(e.target.value);
+            }}
             />
             <Button
               style={{marginTop: 8}}
               onClick={async () => {
-                const result = tx(writeContracts.YourContract.update(updateAddress,updateSoulData), update => {
+                const result = tx(writeContracts.YourContract.burn(userAddress), update => {
                   console.log("📡 Transaction Update:", update);
                   if (update && (update.status === "confirmed" || update.status === 1)) {
                     console.log(" 🍾 Transaction " + update.hash + " finished!");
@@ -155,21 +166,98 @@ export default function ExampleUI({
                 console.log(await result);
               }}
               >
-              Update Soul!
+              Burn Soul
+            </Button>
+            <Button
+              style={{marginTop: 8}}
+              onClick={async () => {
+                const result = tx(writeContracts.YourContract.removeProfile(userprofilerAddress,userAddress), update => {
+                  console.log("📡 Transaction Update:", update);
+                  if (update && (update.status === "confirmed" || update.status === 1)) {
+                    console.log(" 🍾 Transaction " + update.hash + " finished!");
+                    console.log(
+                      " ⛽️ " +
+                        update.gasUsed +
+                        "/" +
+                        (update.gasLimit || update.gas) +
+                        " @ " +
+                        parseFloat(update.gasPrice) / 1000000000 +
+                        " gwei",
+                    );
+                  }
+                });
+                console.log("awaiting metamask/web3 confirm result...", result);
+                console.log(await result);
+              }}
+              >
+              Remove Profile
+            </Button>
+          </Card>
+        </Col>
+        <Col>
+          <Card
+            title="Third Party UI" 
+            bordered={true}
+            hoverable style={{
+              width: 500,
+            }}>
+            <Input
+              placeholder="Profile address"
+              onChange={e => {
+              setProfileAddress(e.target.value);
+            }}
+            />
+            <Input
+              placeholder="Profile Identity"
+              onChange={e => {
+                setProfileIdentity(e.target.value);
+              }}
+            />
+            <Input
+              placeholder="Profile Score"
+              onChange={e => {
+                setProfileScore(e.target.value);
+              }}
+            />
+            <Input
+              placeholder="Profile Url"
+              onChange={e => {
+                setProfileUrl(e.target.value);
+              }}
+            />
+            <Input
+              placeholder="Profile Timestamp"
+              onChange={e => {
+                setProfileTimestamp(e.target.value);
+              }}
+            />
+            <Button
+              style={{marginTop: 8}}
+              onClick={async () => {
+                const result = tx(writeContracts.YourContract.setProfile(profileAddress,profileData), update => {
+                  console.log("📡 Transaction Update:", update);
+                  if (update && (update.status === "confirmed" || update.status === 1)) {
+                    console.log(" 🍾 Transaction " + update.hash + " finished!");
+                    console.log(
+                      " ⛽️ " +
+                        update.gasUsed +
+                        "/" +
+                        (update.gasLimit || update.gas) +
+                        " @ " +
+                        parseFloat(update.gasPrice) / 1000000000 +
+                        " gwei",
+                    );
+                  }
+                });
+                console.log("awaiting metamask/web3 confirm result...", result);
+                console.log(await result);
+              }}
+              >
+              Set Profile
             </Button>
           </Card>
         </Col>
       </Row>
-      <Divider />
-      Your Address: 
-      <Address address={address} ensProvider={mainnetProvider} fontSize={16} />
-      <Divider />
-      Your Contract Address:
-      <Address
-          address={readContracts && readContracts.YourContract ? readContracts.YourContract.address : null}
-          ensProvider={mainnetProvider}
-          fontSize={16}
-      />
       <Divider />
       <div style={{ border: "1px solid #cccccc", padding: 16, width: 400, margin: "auto", marginTop: 64 }}>
       <h2>Events:</h2>
