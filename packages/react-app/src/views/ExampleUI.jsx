@@ -1,4 +1,4 @@
-import { Button, Card, Col, Row, DatePicker, Divider, Input, Progress, Slider, Spin, Switch } from "antd";
+import { Button, Card, Col, Row, DatePicker, Divider, Input, Progress, Slider, Spin, Switch, Space } from "antd";
 import React, { useState } from "react";
 import { utils } from "ethers";
 import { SyncOutlined } from "@ant-design/icons";
@@ -35,8 +35,11 @@ export default function ExampleUI({
   const [profileTimestamp, setProfileTimestamp] = useState("loading...");
   const profileData = [profileIdentity,profileScore,profileUrl,profileTimestamp];
 
+  const [sbtName, setSbtName] = useState("loading...");
+  const [sbtTicker, setSbtTicker] = useState("loading...");
+
   return (
-    <div> 
+    <div>
       <Space align="center">
       <Card
         title="Create SBT"
@@ -56,6 +59,33 @@ export default function ExampleUI({
                 setSbtTicker(e.target.value);
               }}
             />
+            <Button
+              style={{marginTop: 8}}
+              onClick={async () => {
+                const result = tx(writeContracts.YourContract.constructor(sbtName,sbtTicker), update => {
+                  console.log("📡 Transaction Update:", update);
+                  if (update && (update.status === "confirmed" || update.status === 1)) {
+                    console.log(" 🍾 Transaction " + update.hash + " finished!");
+                    console.log(
+                      " ⛽️ " +
+                        update.gasUsed +
+                        "/" +
+                        (update.gasLimit || update.gas) +
+                        " @ " +
+                        parseFloat(update.gasPrice) / 1000000000 +
+                        " gwei",
+                    );
+                  }
+                });
+                console.log("awaiting metamask/web3 confirm result...", result);
+                console.log(await result);
+              }}
+              >
+              Create SBT
+            </Button>
+      </Card>
+      </Space>
+      <Divider />
       <Row gutter={16}>
         <Col span={8}>
           <Card 
