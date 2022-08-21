@@ -38,6 +38,12 @@ export default function ExampleUI({
   return (
     <div> 
       <Space align="center">
+      <Card
+        title="Create SBT"
+        bordered={true} 
+        hoverable style={{
+          width: 500,
+        }}>
       <Row gutter={16}>
         <Col span={8}>
           <Card 
