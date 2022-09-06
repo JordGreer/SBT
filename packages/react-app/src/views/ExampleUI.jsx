@@ -1,4 +1,4 @@
-import { Button, Card, Col, Row, DatePicker, Divider, Input, Progress, Slider, Spin, Switch, Space, Layout } from "antd";
+import { Button, Card, Col, Row, DatePicker, Divider, Input, Progress, Slider, Spin, Switch, Space, Layout, Image } from "antd";
 import React, { useState } from "react";
 import { utils } from "ethers";
 import { SyncOutlined } from "@ant-design/icons";
@@ -42,6 +42,13 @@ export default function ExampleUI({
 
   return (
     <div>
+      <Layout>
+        <Sider>test sider
+          <Image
+            width={200}
+            src= "./src/SBTPicture.png"
+          />
+        </Sider>
       <Card
         title="Create SBT"
         bordered={true} 
@@ -298,17 +305,19 @@ export default function ExampleUI({
               Set Profile
             </Button>
       </Card>
+      </Layout>
       <Divider />
       <div style={{ border: "1px solid #cccccc", padding: 16, width: 400, margin: "auto", marginTop: 64 }}>
-      <h2>Events:</h2>
-      <Events
-        contracts={readContracts}
-        contractName="YourContract"
-        eventName={eventList}
-        localProvider={localProvider}
-        mainnetProvider={mainnetProvider}
-        startBlock={1}
-      />
+        <h2>Events:</h2>
+        <Events
+          contracts={readContracts}
+          contractName="YourContract"
+          eventName={eventList}
+          localProvider={localProvider}
+          mainnetProvider={mainnetProvider}
+          startBlock={1}
+        />
       </div>
-    </div>)
+    </div>
+  )
 }
