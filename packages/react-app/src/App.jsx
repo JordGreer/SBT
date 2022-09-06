@@ -1,4 +1,4 @@
-import { Button, Col, Menu, Row } from "antd";
+import { Button, Col, Menu, Row, Layout } from "antd";
 import "antd/dist/antd.css";
 import {
   useBalance,
@@ -31,6 +31,8 @@ import deployedContracts from "./contracts/hardhat_contracts.json";
 import { Transactor, Web3ModalSetup } from "./helpers";
 import { Home, ExampleUI, Hints, Subgraph } from "./views";
 import { useStaticJsonRPC } from "./hooks";
+
+const { Footer, Sider, Content } = Layout;
 
 const { ethers } = require("ethers");
 /*
@@ -246,6 +248,7 @@ function App(props) {
 
   return (
     <div className="App">
+      <Layout>
       {/* ✏️ Edit the header and change the title to your project name */}
       <Header>
         {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
@@ -424,6 +427,7 @@ function App(props) {
           </Col>
         </Row>
       </div>
+      </Layout>
     </div>
   );
 }

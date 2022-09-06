@@ -40,7 +40,6 @@ export default function ExampleUI({
 
   return (
     <div>
-      <Space align="center">
       <Card
         title="Create SBT"
         bordered={true} 
@@ -172,10 +171,8 @@ export default function ExampleUI({
               >
               Update a Soul
             </Button>
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card 
+      </Card>
+      <Card 
           title="User UI" 
           bordered={true}
           hoverable style={{
@@ -241,10 +238,8 @@ export default function ExampleUI({
               >
               Remove Profile
             </Button>
-          </Card>
-        </Col>
-        <Col>
-          <Card
+      </Card>
+      <Card
             title="Third Party UI" 
             bordered={true}
             hoverable style={{
@@ -304,9 +299,7 @@ export default function ExampleUI({
               >
               Set Profile
             </Button>
-          </Card>
-        </Col>
-      </Row>
+      </Card>
       <Divider />
       <div style={{ border: "1px solid #cccccc", padding: 16, width: 400, margin: "auto", marginTop: 64 }}>
       <h2>Events:</h2>
@@ -319,6 +312,5 @@ export default function ExampleUI({
         startBlock={1}
       />
       </div>
-      </div>
-  );
+    </div>)
 }
