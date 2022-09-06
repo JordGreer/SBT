@@ -1,4 +1,4 @@
-import { Button, Card, Col, Row, DatePicker, Divider, Input, Progress, Slider, Spin, Switch, Space } from "antd";
+import { Button, Card, Col, Row, DatePicker, Divider, Input, Progress, Slider, Spin, Switch, Space, Layout } from "antd";
 import React, { useState } from "react";
 import { utils } from "ethers";
 import { SyncOutlined } from "@ant-design/icons";
@@ -37,6 +37,8 @@ export default function ExampleUI({
 
   const [sbtName, setSbtName] = useState("loading...");
   const [sbtTicker, setSbtTicker] = useState("loading...");
+
+  const { Header, Footer, Sider, Content } = Layout;
 
   return (
     <div>
@@ -83,11 +85,7 @@ export default function ExampleUI({
               Create SBT
             </Button>
       </Card>
-      </Space>
-      <Divider />
-      <Row gutter={16}>
-        <Col span={8}>
-          <Card 
+      <Card 
             title="Operator UI" 
             bordered={true} 
             hoverable style={{
