@@ -44,12 +44,10 @@ export default function ExampleUI({
   return (
     <div>
       <Layout>
-        <Sider>test sider
-          <Image
-            width={200}
-            src= {Token}
-          />
-        </Sider>
+      <Sider>
+      </Sider>
+      <Content>
+      <Row justify="space-evenly">
       <Card
         title="Create SBT"
         bordered={true} 
@@ -318,7 +316,13 @@ export default function ExampleUI({
           mainnetProvider={mainnetProvider}
           startBlock={1}
         />
-      </div>
+      </Card>
+      <Card>  
+      <Image src={Token} preview={false} />
+      </Card>
+      </Row>
+      </Content>
+      </Layout>
     </div>
   )
 }
