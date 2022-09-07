@@ -2,6 +2,7 @@ import { Button, Card, Col, Row, DatePicker, Divider, Input, Progress, Slider, S
 import React, { useState } from "react";
 import { utils } from "ethers";
 import { SyncOutlined } from "@ant-design/icons";
+import Token from "C:/pr0/scaffold-eth/packages/react-app/src/SBTPicture.png";
 
 
 import { Address, Balance, Events } from "../components";
@@ -46,7 +47,7 @@ export default function ExampleUI({
         <Sider>test sider
           <Image
             width={200}
-            src= "./src/SBTPicture.png"
+            src= {Token}
           />
         </Sider>
       <Card
