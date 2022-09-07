@@ -304,10 +304,12 @@ export default function ExampleUI({
               Set Profile
             </Button>
       </Card>
-      </Layout>
-      <Divider />
-      <div style={{ border: "1px solid #cccccc", padding: 16, width: 400, margin: "auto", marginTop: 64 }}>
-        <h2>Events:</h2>
+      <Card
+        title="Events"
+        bordered={true} 
+        hoverable style={{
+          width: 500,
+        }}>
         <Events
           contracts={readContracts}
           contractName="YourContract"
