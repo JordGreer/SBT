@@ -1,9 +1,9 @@
-import { Button, Card, Input, Layout, Image, Col, Row } from "antd";
+import { Button, Card, Input, Layout, Image, Row, Divider } from "antd";
 import React, { useState } from "react";
 import { utils } from "ethers";
 import { SyncOutlined } from "@ant-design/icons";
 import Token from "C:/pr0/scaffold-eth/packages/react-app/src/SBTPicture.png";
-import { useContractReader } from "eth-hooks";
+import { useContractReader} from "eth-hooks";
 
 
 import { Address, Balance, Events } from "../components";
@@ -42,7 +42,9 @@ export default function ExampleUI({
 
   const { Header, Footer, Sider, Content } = Layout;
 
-  const SBT = useContractReader(readContracts, "YourContract", "zeroHash");
+  const soulName = useContractReader(readContracts,"YourContract","name");
+  const soulTicker = useContractReader(readContracts,"YourContract","ticker");
+  const soulOperator = useContractReader(readContracts,"YourContract","operator");
 
   return (
     <div>
@@ -326,17 +328,31 @@ export default function ExampleUI({
           startBlock={1}
         />
       </Card>
-      {/*This card is broken because I dont know if I am using useContractReader hook properly */}
       <Card>
       <div>  
-        {SBT ? (
+        {soulName && soulTicker && soulOperator ? (
+          <div>
             <Image src={Token} preview={false} />
+            <Divider/>
+            <span>
+              Soul Name: {soulName}
+            </span>
+            <Divider/>
+            <span>
+              Soul Ticker: {soulTicker}
+            </span>
+            <Divider/>
+            <span>
+              Soul Operator: {soulOperator}
+            </span>
+            <Divider/>
+            </div>
           ) : (
             <span>
-              No Token deployed
+              No token detected, either none are minted or useContractReader incorrectly!
             </span>
           )
-        }
+          }
       </div>
       </Card>
       </Row>
