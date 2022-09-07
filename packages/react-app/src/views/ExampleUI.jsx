@@ -326,16 +326,17 @@ export default function ExampleUI({
           startBlock={1}
         />
       </Card>
+      {/*This card is broken because I dont know if I am using useContractReader hook properly */}
       <Card>
       <div>  
-      {!SBT ? (
-
-        <span>
-          No Token deployed
-        </span>
-      ) : (
-        <Image src={Token} preview={false} />
-      )}
+        {SBT ? (
+            <Image src={Token} preview={false} />
+          ) : (
+            <span>
+              No Token deployed
+            </span>
+          )
+        }
       </div>
       </Card>
       </Row>
