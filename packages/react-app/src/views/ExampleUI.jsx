@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { utils } from "ethers";
 import { SyncOutlined } from "@ant-design/icons";
 import Token from "C:/pr0/scaffold-eth/packages/react-app/src/SBTPicture.png";
+import { useContractReader } from "eth-hooks";
 
 
 import { Address, Balance, Events } from "../components";
@@ -41,6 +42,8 @@ export default function ExampleUI({
 
   const { Header, Footer, Sider, Content } = Layout;
 
+  const SBT = useContractReader(readContracts, "YourContract", "zeroHash");
+
   return (
     <div>
       <Layout>
@@ -48,6 +51,10 @@ export default function ExampleUI({
       </Sider>
       <Content>
       <Row justify="space-evenly">
+      {/* this card is not working properly, trying to create the token first,
+      thus giving msg.sender the operator status,
+      currently using workaround by hardcoding
+      persoal address in constructor (cheating)*/}
       <Card
         title="Create SBT"
         bordered={true} 
@@ -319,8 +326,17 @@ export default function ExampleUI({
           startBlock={1}
         />
       </Card>
-      <Card>  
-      <Image src={Token} preview={false} />
+      <Card>
+      <div>  
+      {!SBT ? (
+
+        <span>
+          No Token deployed
+        </span>
+      ) : (
+        <Image src={Token} preview={false} />
+      )}
+      </div>
       </Card>
       </Row>
       </Content>
