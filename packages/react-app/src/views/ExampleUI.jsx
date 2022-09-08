@@ -57,9 +57,7 @@ export default function ExampleUI({
       <Mints
         contracts={readContracts}
         contractName="YourContract"
-        eventName={eventList}
         localProvider={localProvider}
-        mainnetProvider={mainnetProvider}
         startBlock={1} 
         />
       </Sider>

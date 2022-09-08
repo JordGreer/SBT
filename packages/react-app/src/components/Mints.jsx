@@ -22,9 +22,9 @@ import Blockies from "react-blockies";
   />
 **/
 
-export default function Mints({ contracts, contractName, localProvider, mainnetProvider, startBlock }) {
+export default function Mints({ contracts, contractName, localProvider, startBlock }) {
   // 📟 Listen for broadcast events
-  const events = useEventListener(contracts, contractName, "Mints", localProvider, startBlock);
+  const events = useEventListener(contracts, contractName, "Mint", localProvider, startBlock);
 
   return (
     <div>
