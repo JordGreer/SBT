@@ -371,9 +371,6 @@ export default function ExampleUI({
           }
       </div>
       </Card>
-      <Card>
-        
-      </Card>
       </Row>
       </Content>
       </Layout>
