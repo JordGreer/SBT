@@ -1,12 +1,13 @@
-import { Button, Card, Input, Layout, Image, Row, Divider } from "antd";
+import { Button, Card, Input, Layout, Image, Row, Divider, List } from "antd";
 import React, { useState } from "react";
 import { utils } from "ethers";
-import { SyncOutlined } from "@ant-design/icons";
+import { MinusSquareTwoTone, SyncOutlined } from "@ant-design/icons";
 import Token from "C:/pr0/scaffold-eth/packages/react-app/src/SBTPicture.png";
 import { useContractReader} from "eth-hooks";
 
 
-import { Address, Balance, Events } from "../components";
+import { Address, Balance, Events, Mints } from "../components";
+import { useEventListener } from "eth-hooks/events/useEventListener";
 
 export default function ExampleUI({
   purpose,
@@ -17,8 +18,9 @@ export default function ExampleUI({
   price,
   tx,
   readContracts,
-  writeContracts,
-}) {
+  writeContracts
+  
+  }) {
   const [operatorAddress, setOperatorAddress] = useState("loading...");
   const [operatorIdentity, setOperatorIdentity] = useState("loading...");
   const [operatorScore, setOperatorScore] = useState("loading...");
@@ -30,7 +32,7 @@ export default function ExampleUI({
   const [userAddress, setUserAddress] =useState("loading...");
   const [userprofilerAddress, setUserProfilerAddress] =useState("loading...");
 
-  const [profileAddress, setProfileAddress] =useState("loading...");
+  const [profileAddress, setProfileAddress] =useState("loading address...");
   const [profileIdentity, setProfileIdentity] = useState("loading...");
   const [profileScore, setProfileScore] = useState("loading...");
   const [profileUrl, setProfileUrl] = useState("loading...");
@@ -46,10 +48,18 @@ export default function ExampleUI({
   const soulTicker = useContractReader(readContracts,"YourContract","ticker");
   const soulOperator = useContractReader(readContracts,"YourContract","operator");
 
+
   return (
     <div>
       <Layout>
       <Sider>
+      <Mints
+        contracts={readContracts}
+        contractName="YourContract"
+        localProvider={localProvider}
+        mainnetProvider={mainnetProvider}
+        startBlock={1} 
+        />
       </Sider>
       <Content>
       <Row justify="space-evenly">
@@ -100,7 +110,7 @@ export default function ExampleUI({
               Create SBT
             </Button>
       </Card>
-      <Card 
+      <Card                       
             title="Operator UI" 
             bordered={true} 
             hoverable style={{
@@ -327,6 +337,7 @@ export default function ExampleUI({
           mainnetProvider={mainnetProvider}
           startBlock={1}
         />
+        
       </Card>
       <Card>
       <div>  
@@ -346,6 +357,9 @@ export default function ExampleUI({
               Soul Operator: {soulOperator}
             </span>
             <Divider/>
+            <span>
+              
+            </span>
             </div>
           ) : (
             <span>
@@ -354,6 +368,9 @@ export default function ExampleUI({
           )
           }
       </div>
+      </Card>
+      <Card>
+        
       </Card>
       </Row>
       </Content>
