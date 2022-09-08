@@ -1,6 +1,5 @@
-import { List, Image, Space, Divider } from "antd";
+import { List, Image, Space, Divider, Card } from "antd";
 import { useEventListener } from "eth-hooks/events/useEventListener";
-import Address from "./Address";
 import Token from "C:/pr0/scaffold-eth/packages/react-app/src/SBTPicture.png";
 import Blockies from "react-blockies";
 
@@ -28,13 +27,14 @@ export default function Mints({ contracts, contractName, localProvider, startBlo
 
   return (
     <div>
+      <Card title="Tokens Minted">
       <List
         bordered
         dataSource={events}
         renderItem={item => {
           return (
             <List.Item key={item.blockNumber}>
-              <Space size={20} split={<Divider type="vertical" />}>
+              <Space size={5} split={<Divider type="vertical" />} align="center">
               <Blockies seed={item.args[0].toLowerCase()}size={20}scale={2}/>
               <Image src={Token} preview={false}height={40}width={40}/>
               </Space>
@@ -42,6 +42,7 @@ export default function Mints({ contracts, contractName, localProvider, startBlo
           );
         }}
       />
+      </Card>
     </div>
   );
 }
