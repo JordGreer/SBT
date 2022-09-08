@@ -5,9 +5,10 @@ import { MinusSquareTwoTone, SyncOutlined } from "@ant-design/icons";
 import Token from "C:/pr0/scaffold-eth/packages/react-app/src/SBTPicture.png";
 import { useContractReader} from "eth-hooks";
 
-
-import { Address, Balance, Events, Mints } from "../components";
+import { Address, Balance, Events } from "../components";
 import { useEventListener } from "eth-hooks/events/useEventListener";
+import Mints from "../components/Mints.jsx";
+
 
 export default function ExampleUI({
   purpose,
@@ -56,6 +57,7 @@ export default function ExampleUI({
       <Mints
         contracts={readContracts}
         contractName="YourContract"
+        eventName={eventList}
         localProvider={localProvider}
         mainnetProvider={mainnetProvider}
         startBlock={1} 
