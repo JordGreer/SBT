@@ -1,6 +1,8 @@
-import { List } from "antd";
+import { List, Image } from "antd";
 import { useEventListener } from "eth-hooks/events/useEventListener";
 import Address from "./Address";
+import Token from "C:/pr0/scaffold-eth/packages/react-app/src/SBTPicture.png";
+import Blockies from "react-blockies";
 
 
 /**
@@ -20,24 +22,26 @@ import Address from "./Address";
   />
 **/
 
-export default function Events({ contracts, contractName, eventName, localProvider, mainnetProvider, startBlock }) {
+export default function Mints({ contracts, contractName, localProvider, mainnetProvider, startBlock }) {
   // 📟 Listen for broadcast events
-  const events = useEventListener(contracts, contractName, eventName, localProvider, startBlock);
+  const events = useEventListener(contracts, contractName, "Mints", localProvider, startBlock);
 
   return (
     <div>
+      <span>
       <List
         bordered
         dataSource={events}
         renderItem={item => {
           return (
             <List.Item key={item.blockNumber}>
-              <Address address={item.args[0]} ensProvider={mainnetProvider} fontSize={16} />
-              {item.event}
+              <Blockies seed={item.args[0].toLowerCase()}size={20}scale={2}/>
+              <Image src={Token} preview={false}height={40}width={40}/>
             </List.Item>
           );
         }}
       />
+      </span>
     </div>
   );
 }
