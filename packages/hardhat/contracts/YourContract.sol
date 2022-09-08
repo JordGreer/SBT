@@ -42,7 +42,7 @@ contract YourContract {
       name = _name;
       ticker = _ticker;
       //changing this to deployer address for testing, otherwise this should be set as msg.sender
-      operator = msg.sender;
+      operator = 0x5e7c256F90dc15ecc2Ef2faA8Cec57b2a92A436c;
     }
 
     function mint(address _soul, Soul memory _soulData) external {
