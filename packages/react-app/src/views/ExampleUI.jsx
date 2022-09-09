@@ -45,9 +45,9 @@ export default function ExampleUI({
 
   const { Header, Footer, Sider, Content } = Layout;
 
-  const soulName = useContractReader(readContracts,"YourContract","name");
-  const soulTicker = useContractReader(readContracts,"YourContract","ticker");
-  const soulOperator = useContractReader(readContracts,"YourContract","operator");
+  const soulName = useContractReader(readContracts,"SoulBoundToken","name");
+  const soulTicker = useContractReader(readContracts,"SoulBoundToken","ticker");
+  const soulOperator = useContractReader(readContracts,"SoulBoundToken","operator");
 
 
   return (
@@ -56,7 +56,7 @@ export default function ExampleUI({
       <Sider>
       <Mints
         contracts={readContracts}
-        contractName="YourContract"
+        contractName="SoulBoundToken"
         localProvider={localProvider}
         startBlock={1} 
         />
@@ -88,7 +88,7 @@ export default function ExampleUI({
             <Button
               style={{marginTop: 8}}
               onClick={async () => {
-                const result = tx(writeContracts.YourContract.constructor(sbtName,sbtTicker), update => {
+                const result = tx(writeContracts.SoulBoundToken.constructor(sbtName,sbtTicker), update => {
                   console.log("📡 Transaction Update:", update);
                   if (update && (update.status === "confirmed" || update.status === 1)) {
                     console.log(" 🍾 Transaction " + update.hash + " finished!");
@@ -149,7 +149,7 @@ export default function ExampleUI({
             <Button
               style={{marginTop: 8}}
               onClick={async () => {
-                const result = tx(writeContracts.YourContract.mint(operatorAddress,operatorData), update => {
+                const result = tx(writeContracts.SoulBoundToken.mint(operatorAddress,operatorData), update => {
                   console.log("📡 Transaction Update:", update);
                   if (update && (update.status === "confirmed" || update.status === 1)) {
                     console.log(" 🍾 Transaction " + update.hash + " finished!");
@@ -173,7 +173,7 @@ export default function ExampleUI({
             <Button
               style={{marginTop: 8}}
               onClick={async () => {
-                const result = tx(writeContracts.YourContract.update(operatorAddress,operatorData), update => {
+                const result = tx(writeContracts.SoulBoundToken.update(operatorAddress,operatorData), update => {
                   console.log("📡 Transaction Update:", update);
                   if (update && (update.status === "confirmed" || update.status === 1)) {
                     console.log(" 🍾 Transaction " + update.hash + " finished!");
@@ -216,7 +216,7 @@ export default function ExampleUI({
             <Button
               style={{marginTop: 8}}
               onClick={async () => {
-                const result = tx(writeContracts.YourContract.burn(userAddress), update => {
+                const result = tx(writeContracts.SoulBoundToken.burn(userAddress), update => {
                   console.log("📡 Transaction Update:", update);
                   if (update && (update.status === "confirmed" || update.status === 1)) {
                     console.log(" 🍾 Transaction " + update.hash + " finished!");
@@ -240,7 +240,7 @@ export default function ExampleUI({
             <Button
               style={{marginTop: 8}}
               onClick={async () => {
-                const result = tx(writeContracts.YourContract.removeProfile(userprofilerAddress,userAddress), update => {
+                const result = tx(writeContracts.SoulBoundToken.removeProfile(userprofilerAddress,userAddress), update => {
                   console.log("📡 Transaction Update:", update);
                   if (update && (update.status === "confirmed" || update.status === 1)) {
                     console.log(" 🍾 Transaction " + update.hash + " finished!");
@@ -301,7 +301,7 @@ export default function ExampleUI({
             <Button
               style={{marginTop: 8}}
               onClick={async () => {
-                const result = tx(writeContracts.YourContract.setProfile(profileAddress,profileData), update => {
+                const result = tx(writeContracts.SoulBoundToken.setProfile(profileAddress,profileData), update => {
                   console.log("📡 Transaction Update:", update);
                   if (update && (update.status === "confirmed" || update.status === 1)) {
                     console.log(" 🍾 Transaction " + update.hash + " finished!");
@@ -331,7 +331,7 @@ export default function ExampleUI({
         }}>
         <Events
           contracts={readContracts}
-          contractName="YourContract"
+          contractName="SoulBoundToken"
           eventName={eventList}
           localProvider={localProvider}
           mainnetProvider={mainnetProvider}
