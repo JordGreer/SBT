@@ -68,7 +68,7 @@ export default function ExampleUI({
       currently using workaround by hardcoding
       persoal address in constructor (cheating)*/}
       <Card
-        title="Create SBT"
+        title="Create SBT - Currently not working"
         bordered={true} 
         hoverable style={{
           width: 500,
